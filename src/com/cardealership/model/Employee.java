@@ -2,26 +2,27 @@ package com.cardealership.model;
 
 public class Employee {
 	
-	public void handleCustomer(Customer custumer, boolean finance, Vehicle vehicle) {
-		if(finance == true) {
+	public void handleCustomer(Customer custumer, Vehicle vehicle) {
+		if(custumer.getCashOnHand() < vehicle.getPrice()) {
 			double loanAmount = vehicle.getPrice() - custumer.getCashOnHand();
-			runCreditHistory(custumer, loanAmount);
-		}else if(vehicle.getPrice() <= custumer.getCashOnHand()) {
-			processTransaction(custumer, vehicle);
+			runCreditHistory(custumer, Math.abs(loanAmount));
 		}else {
-			System.out.println("Customer " + custumer.getName() + " will need more money to purchase the vehicle!");
+			processTransaction(custumer, vehicle);
 		}
 	}
 	
 	public void runCreditHistory(Customer custumer, double loanAmount) {
-		System.out.println("Ran credit history for customer " + custumer.getName());
-		System.out.println("Customer has been approved to purchase the vehicle");
-		System.out.println("Loan: " + loanAmount);
+		System.out.println("Your loan has been approved!");
+		custumer.setLoanAmount(loanAmount);
+		custumer.setCashOnHand(0);
 	}
 	
 	public void processTransaction(Customer custumer, Vehicle vehicle) {
-		System.out.println("Customer " + custumer.getName()  + 
-				" has been purchased the vehicle " + vehicle + 
-				" for the price of " + vehicle.getPrice());
+		System.out.println("Transaction has been completed");
+		System.out.println("Transaction details:");
+		System.out.println(custumer.toString());
+		System.out.println(vehicle.toString());
+		custumer.setCashOnHand(custumer.getCashOnHand() - vehicle.getPrice());
+		System.out.println(custumer.finances());
 	}
 }
