@@ -38,5 +38,13 @@ public class Vehicle {
 		this.model = model;
 	}
 	
-	
+	public String toString() {
+		String message = "";
+		message = "-- Vehicle info--\n";
+		message += "Make: " + this.getMake() + "\n";
+		message += "Model: " + this.getModel() + "\n";
+		message += "Price: " + this.getPrice() + "\n";
+		message += "-----------------";
+		return message;
+	}
 }
