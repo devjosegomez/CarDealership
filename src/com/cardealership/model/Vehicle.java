@@ -5,6 +5,14 @@ public class Vehicle {
 	private String model;
 	private double price;
 	
+	//constructor
+	public Vehicle(String make, String model, double price) {
+		super();
+		this.make = make;
+		this.model = model;
+		this.price = price;
+	}
+	
 	//getters and setters
 	public double getPrice() {
 		return this.price;
