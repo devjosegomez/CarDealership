@@ -23,6 +23,8 @@ public class DealershipApp {
 		Employee emp = new Employee();
 		
 		customer.PurchaseCar(vehicle, emp);
+		
+		input.close();
 
 	}
 }
